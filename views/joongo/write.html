@@ -1,0 +1,120 @@
+{% extends 'layout_jg.html' %} {%block style%}
+<style>
+  /* .list-group {
+    } */
+  .write-container {
+    padding: 2%;
+    margin-top: 10px;
+    position: fixed;
+
+    -ms-overflow-style: none;
+    left: 10%;
+    top: 10%;
+    width: 60%;
+    height: 78%;
+    overflow: auto;
+  }
+  .write-container::-webkit-scrollbar {
+    display: none;
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
+{%endblock%}{%block content%}
+<div class="write-container card bg-light mb-3">
+  <form action="/joongo/board/write" method="post">
+    <div class="form-group">
+      <label class="col-form-label mt-4" for="inputDefault">제목</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        placeholder="제목..."
+        id="inputDefault"
+        required
+        minlength="3"
+        maxlegnth="20"
+        style="padding: 7px"
+      />
+    </div>
+    <fieldset>
+      <div class="form-group">
+        <label for="exampleTextarea" class="form-label mt-4">내용</label>
+        <textarea
+          required
+          minlength="10"
+          maxlength="200"
+          class="form-control"
+          name="content"
+          id="exampleTextarea"
+          rows="7"
+          style="padding: 7px"
+        ></textarea>
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <h5 class="mt-4">거래 방식</h5>
+      <div style="display: flex">
+        <div class="form-check" style="margin-right: 10px">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="현금결제"
+            name="money1"
+            id="flexCheckDefault1"
+          />
+          <label class="form-check-label" for="flexCheckDefault1">
+            현금결제
+          </label>
+        </div>
+        <div class="form-check" style="margin-right: 10px">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="money2"
+            value="계좌거래"
+            id="flexCheckDefault2"
+          />
+          <label class="form-check-label" for="flexCheckDefault2">
+            계좌 거래
+          </label>
+        </div>
+        <div class="form-check" style="margin-right: 10px">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="물물교환"
+            id="flexCheckDefault3"
+            name="money3"
+          />
+          <label class="form-check-label" for="flexCheckDefault3">
+            물물교환
+          </label>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset style="position: relative; top: -10px">
+      <h5 class="mt-4">자동 판매 중지</h5>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckChecked"
+          checked=""
+        />
+        <label class="form-check-label" for="flexSwitchCheckChecked"
+          >1주일 이상 판매되지 않으면 중지됩니다.</label
+        >
+      </div>
+    </fieldset>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      style="position: absolute; margin-top: 3%; right: 2%"
+    >
+      작성
+    </button>
+  </form>
+</div>
+{% endblock %} {% block script %} {% endblock %}

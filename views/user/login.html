@@ -1,0 +1,80 @@
+{% extends 'layout_user.html' %} {%block content%}
+
+<div style="padding: 70px"></div>
+<form name="login_form" action="/auth/login" method="post">
+  <img src="/img/dghs.png" alt="dghs" class="dghs_logo" width="200" />
+  <div>
+    <div>
+      <input
+        style="font-family: goyang"
+        type="text"
+        name="email"
+        placeholder="아이디"
+        class="form_input"
+      />
+    </div>
+    <div class="form_text_alert_padding">
+      <div id="alert_username" class="form_text_alert"></div>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <input
+        style="font-family: goyang"
+        type="password"
+        name="password"
+        placeholder="비밀번호"
+        class="form_input"
+      />
+    </div>
+    <div class="form_text_alert_padding">
+      <div id="alert_password" class="form_text_alert"></div>
+    </div>
+  </div>
+
+  <div style="height: 10px"></div>
+  <div>
+    <button
+      type="submit"
+      class="form_submit_button"
+      style="font-family: goyang"
+    >
+      로그인
+    </button>
+  </div>
+
+  <div style="height: 10px"></div>
+  <div>
+    <a href="/user/register">
+      <button
+        style="font-family: goyang"
+        type="button"
+        class="form_register_button"
+      >
+        회원가입
+      </button>
+    </a>
+  </div>
+
+  <div style="height: 10px"></div>
+  <div>
+    <button
+      style="font-family: goyang"
+      type="button"
+      class="form_findpasswd_button"
+      onclick="find_passwd()"
+    >
+      비밀번호 찾기
+    </button>
+  </div>
+</form>
+{% endblock %} {% block script %}
+<script>
+  window.onload = () => {
+    if (new URL(location.href).serchParams?.get("loginError")) {
+      aler(new URL(location.href).serchParams.get("loginError"));
+    }
+  };
+</script>
+{% endblock %}

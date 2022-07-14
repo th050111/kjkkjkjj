@@ -1,0 +1,53 @@
+{% extends 'layout_jg.html' %} {%block style%}
+<style>
+  /* .list-group {
+    } */
+  .board-container {
+    margin-top: 10px;
+    position: fixed;
+
+    -ms-overflow-style: none;
+    left: 10%;
+    top: 10%;
+    width: 60%;
+    height: 90%;
+    overflow: auto;
+  }
+  .list-container::-webkit-scrollbar {
+    display: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  .article-img {
+    width: 15%;
+    height: 15%;
+  }
+</style>
+{%endblock%} {%block content%}
+<div class="board-container">
+  <div class="card mb-3">
+    <h5 class="card-header">
+      <span class="badge rounded-pill bg-info">{{board_onSale}}</span>
+      {{board_title}}
+    </h5>
+    <div class="card-body">
+      <img src="/img/dghs.png" alt="dghs" class="article-img" />
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{board_content}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Cras justo odio</li>
+      <li class="list-group-item">Dapibus ac facilisis in</li>
+      <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+    <div class="card-footer text-muted">{{board_writer.nick}} 2 days ago</div>
+  </div>
+</div>
+
+{% endblock %} {% block script %} {% endblock %}

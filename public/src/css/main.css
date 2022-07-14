@@ -1,0 +1,159 @@
+.main_container {
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 1000px;
+}
+
+.form_container {
+  width: 50px;
+  margin: auto;
+}
+
+.form_title_div {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+input::placeholder {
+  color: gray;
+  font-size: 20px;
+  margin: auto;
+}
+
+.form_title_p {
+  font-weight: bold;
+  font-size: 30px;
+  display: inline-block;
+  padding-top: 10px;
+}
+
+.form_input {
+  width: 800px;
+  height: 70px;
+  border: 1px solid;
+  border-radius: 1px;
+  border-color: #aeaeae;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-size: 20px;
+}
+
+.form_item_name {
+  color: gray;
+}
+
+.form_text_alert {
+  height: 10px;
+}
+
+.form_text_alert_padding {
+  padding-bottom: 10px;
+}
+
+.form_submit_button {
+  width: 800px;
+  height: 70px;
+  background-color: black;
+  border: 1px;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.form_register_button {
+  width: 200px;
+  height: 20px;
+  background-color: white;
+  border: 1px;
+  border-radius: 10px;
+  color: gray;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.form_gologin_button {
+  width: 200px;
+  height: 20px;
+  background-color: white;
+  border: 1px;
+  border-radius: 10px;
+  color: gray;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.form_findpasswd_button {
+  width: 200px;
+  height: 20px;
+  background-color: white;
+  border: 1px;
+  border-radius: 10px;
+  color: gray;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.form_submitregister_button {
+  width: 800px;
+  height: 70px;
+  background-color: black;
+  border: 1px;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-family: goyang;
+}
+.re-form_input {
+  width: 800px;
+  height: 60px;
+  border: 1px solid;
+  border-radius: 1px;
+  border-color: #aeaeae;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-size: 20px;
+}
+
+.dghs_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding-top: 1px;
+}
+@font-face {
+  src: url("goyang.ttf");
+  font-family: "goyang";
+}

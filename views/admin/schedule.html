@@ -1,0 +1,80 @@
+{% extends 'admin/layout.html' %} {%block content%}
+<table class="schedule"></table>
+<form action="/admin/schedule/write" method="post" id="schedule_form">
+  <input
+    a
+    type="text"
+    name="title"
+    id="title"
+    placeholder="시간"
+    maxlength="10"
+    minlength="2"
+    required
+  />
+  <input
+    type="text"
+    name="content"
+    id="content"
+    placeholder="세부내용"
+    maxlength="100"
+  />
+  <input type="number" name="grade" id="grade" required min="0" max="3" />
+  <input type="date" name="date" id="date" min="2022-05-28" required />
+  <input type="submit" value="작성" />
+</form>
+
+{%endblock%} {% block script %}
+<script>
+  function getSchedule() {
+    axios.get("/home/getSchedule").then((res) => {
+      drawSchedule(res.data);
+    });
+  }
+
+  getSchedule();
+
+  function drawSchedule(schedules) {
+    console.log(schedules);
+    const schTb = document.querySelector(".schedule");
+    schTb.innerHTML = "";
+    schedules.forEach((schedule) => {
+      console.log(schedule);
+      const tr = document.createElement("tr");
+      const title = document.createElement("td");
+      const content = document.createElement("td");
+      const grade = document.createElement("td");
+      const date = document.createElement("td");
+      const btn = document.createElement("button");
+
+      btn.className = "sch-delete-btn";
+      btn.addEventListener("click", async () => {
+        await axios.post("/admin/schedule/delete/" + schedule.id);
+        getSchedule();
+      });
+      btn.innerHTML = "X";
+
+      title.className = "sch-title";
+      content.className = "sch-content";
+      grade.classList = "sch-grade";
+      date.classList = "sch-grade";
+
+      title.innerHTML = schedule.time;
+      content.innerHTML = schedule.content;
+      grade.innerHTML =
+        schedule.grade == 0 ? "전체학년" : schedule.grade + "학년";
+      date.innerHTML =
+        schedule.date.split("-")[1] +
+        "월 " +
+        schedule.date.split("-")[2] +
+        "일";
+      tr.appendChild(grade);
+      tr.appendChild(date);
+      tr.appendChild(title);
+      tr.appendChild(content);
+      tr.appendChild(btn);
+      schTb.appendChild(tr);
+    });
+  }
+</script>
+<script></script>
+{% endblock %}

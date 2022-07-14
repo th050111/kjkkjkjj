@@ -1,0 +1,172 @@
+{% extends 'layout.html' %} {%block content%}
+
+<main>
+  <div class="banner">
+    <div class="site-title">
+      <img src="" alt="" />
+      <span>대건 사이트</span>
+    </div>
+    <div class="dDay-container" style="display: flex">
+      <div class="dDay-article">
+        <span class="dDay-title">수능</span>
+        <span class="dDay-time">D-105</span>
+      </div>
+
+      <div class="dDay-article">
+        <span class="dDay-title">수능</span>
+        <span class="dDay-time">D-105</span>
+      </div>
+
+      <div class="dDay-article">
+        <span class="dDay-title">수능</span>
+        <span class="dDay-time">D-105</span>
+      </div>
+      <div></div>
+    </div>
+  </div>
+  <div class="schedule-container"></div>
+  <form class="meal-form">
+    <label for="year">year :</label>
+    <input type="text" id="year" />
+    <label for="inputName">month :</label>
+    <input type="text" id="month" />
+    <label for="inputName">date :</label>
+    <input type="text" name="name" id="date" />
+    <input type="submit" value="submit" />
+  </form>
+  <div class="meal-list-container">
+    <br />
+    <br />
+    <div class="meal-list" style="display: flex">
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+    </div>
+  </div>
+
+  <!-- <div class="bottomdown_box">
+    <form>
+      <label for="year">year :</label>
+      <input type="text" id="year" />
+      <label for="inputName">month :</label>
+      <input type="text" id="month" />
+      <label for="inputName">date :</label>
+      <input type="text" name="name" id="date" />
+      <input type="submit" value="submit" />
+    </form>
+    <br />
+    <br />
+    <table class="schedule"></table>
+    <div class="meal-date"></div>
+    <div class="container" style="display: flex">
+      <div class="first"></div>
+      <div class="second"></div>
+      <div class="third"></div>
+    </div>
+  </div> -->
+</main>
+
+{% endblock %} {% block script %}
+<script>
+  //Date객체로 오늘의 날짜 정보 저장
+  const date = new Date();
+  const today = {
+    year: date.getFullYear(),
+    date: parseInt(date.getDate()),
+    month: date.getMonth() + 1,
+    day: date.getDay(),
+  };
+
+  const schListByDate = {};
+  axios.get("/home/getSchedule").then((res) => {
+    getSch(res.data);
+  });
+
+  function getSch(schedules, date) {
+    date = date || today;
+
+    schedules.forEach((schedule) => {
+      if (schListByDate[schedule.date]) {
+        schListByDate[schedule.date].unshift({ ...schedule });
+      } else schListByDate[schedule.date] = [{ ...schedule }];
+    }); // 서버측에서 변환에서 주기 고민
+
+    const firstDate = date.date - date.day + 1;
+    date.month = date.month < 10 ? "0" + date.month : date.month;
+    if (firstDate <= 0) return; //   수정해야함
+    for (let i = firstDate; i < firstDate + 7; i++) {
+      //자리수 맞춰주기 ex) 5월 --> 05월
+      i = i < 10 ? "0" + i : i;
+
+      console.log(`${date.year}-${date.month}-${i}`);
+      let schToDraw = schListByDate[`${date.year}-${date.month}-${i}`];
+      if (!schToDraw) schToDraw = [];
+
+      drawSchedule(schToDraw, i);
+    }
+  }
+
+  function drawSchedule(lists, date) {
+    console.log(lists);
+    const calBlock = document.createElement("div");
+    calBlock.classList = "calender-block";
+    if (date == today.date) calBlock.classList.add("today");
+
+    const dateCon = document.createElement("div");
+    dateCon.classList = "date-container";
+    dateCon.innerHTML = `<!-- <span class="day">월</span> -->
+          <span class="date">${date}</span>`;
+    const artCon = document.createElement("ul");
+    artCon.classList = "article-container";
+    lists.forEach((list) => {
+      const article = document.createElement("li");
+      article.classList = "article";
+      article.innerHTML = `
+            <span class="time">${list.time}</span>
+            <span class="content">${list.content}</span>`;
+
+      artCon.appendChild(article);
+    });
+    calBlock.appendChild(dateCon);
+    calBlock.appendChild(artCon);
+    document.querySelector(".schedule-container").appendChild(calBlock);
+  }
+</script>
+<script>
+  document.querySelector(".meal-form").addEventListener("submit", (e) => {
+    //submit 되었을때
+    e.preventDefault(); //새로고침 안되게
+
+    const year = e.target.year.value || 0;
+    const month = e.target.month.value || 0;
+    const date = e.target.date.value || 0;
+
+    axios
+      .get(`/home/getMeal?year=${year}&month=${month}&day=${date}`)
+      .then((res) => {
+        drawMealList(res.data);
+      });
+  });
+
+  //html에 급식표 그리기 <-- 자유롭게 수정
+  function drawMealList({ dateJson, list }) {
+    console.log(list);
+    const { year, month, date } = dateJson;
+    // document.querySelector(
+    //   ".meal-date"
+    // )?.innerHTML = `${year}년 ${month}월 ${date}일`;
+    const mealHtmlList = document.querySelectorAll(".meal-list>div");
+    console.log(mealHtmlList);
+    for (let i = 0; i < 3; i++) {
+      const divList = document.createElement("div");
+      for (let j = 0; j < list[i].length; j++) {
+        const div = document.createElement("div");
+        div.innerHTML = list[i][j];
+        divList.appendChild(div);
+      }
+      mealHtmlList[i].innerHTML = "";
+      mealHtmlList[i].appendChild(divList);
+    }
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>TEST</title>
+    <link rel="stylesheet" href="css/css (1).css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+  </head>
+
+  <body class="white">
+    <div class="container_1">
+      <div class="leftup_box">
+        <ul>
+          <img href="uk_board.html" src="img/dghs.png" class="dghs" />
+          <li><p class="leftup_box_title">홈</p></li>
+          <li>
+            <p href="uk_board.html" class="leftup_box_text">익명게시판</p>
+          </li>
+          <li><p class="leftup_box_text">청원</p></li>
+          <li><p class="leftup_box_text">모의고사 타이머</p></li>
+          <li><p class="leftup_box_text">타이머</p></li>
+          <li><p class="leftup_box_text">COMING SOON</p></li>
+          <li><p class="leftup_box_text">COMING SOON</p></li>
+          <li><p class="leftup_box_text">COMING SOON</p></li>
+        </ul>
+      </div>
+      <div class="leftdown_box">
+        <ul>
+          <li><p class="leftup_box_title">베스트 게시물</p></li>
+          <li><p class="leftdown_box_text">여기에게시물입력</p></li>
+          <li><p class="leftdown_box_text">여기에게시물입력</p></li>
+          <li><p class="leftdown_box_text">여기에게시물입력</p></li>
+          <li><p class="leftdown_box_text">여기에게시물입력</p></li>
+        </ul>
+      </div>
+      <div class="leftdowndown_box">
+        <p class="t heme">테마 변경 ▶</p>
+      </div>
+      <div class="bottomup_box" id="ViewTimer">
+        <p class="current_dday">추석까지</p>
+      </div>
+      <div class="bottomup_box_sub">
+        <p class="current_dday">추석까지</p>
+      </div>
+      <div class="bottomup_box_sub_2">
+        <p class="current_dday">다음 >> 중간고사</p>
+      </div>
+    </div>
+    <div class="container_2">
+      <div class="theme_box">
+        <h2 class="theme_title">테마 변경</h2>
+        <form class="the2e">
+          <input type="radio" name="theme" value="white" checked="checked" />
+          <p id="op">화이트</p>
+          <input type="radio" name="theme" value="black" />
+          <p id="op">블랙</p>
+          <input type="radio" name="theme" value="testheme" />
+          <p id="op">테스트테마</p>
+          <button class="theme_submit" value="저장">저장</button>
+        </form>
+        <div></div>
+      </div>
+    </div>
+    <script src="myBase.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

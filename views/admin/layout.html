@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="src/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
+    {% block style %} {% endblock %}
+  </head>
+
+  <body class="white">
+    <div></div>
+    {% block content %} {% endblock %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+      const list = [
+        {
+          href: "schedule",
+          name: "일정",
+        },
+      ];
+      for (let i = 0; i < list.length; i++) {
+        const a = document.createElement("a");
+        a.href = "" + list[i].href;
+        a.innerHTML = list[i].name;
+        document.querySelector("div").appendChild(a);
+      }
+    </script>
+    {% block script %} {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,152 @@
+{% extends 'layout_jg.html' %} {%block style%}
+<style>
+  /* .list-group {
+    } */
+  .list-group {
+    position: fixed;
+
+    -ms-overflow-style: none;
+    left: 10%;
+    top: 30%;
+    width: 1600px;
+    height: 60%;
+    overflow: auto;
+  }
+  .list-group::-webkit-scrollbar {
+    display: none;
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
+{%endblock%} {%block content%}
+<ul class="list-group"></ul>
+
+{%endblock %} {% block script %}
+<script>
+  window.onload = () => {
+    axios.get("/joongo/user/get/myboard").then((res) => {
+      console.log(res.data);
+      drawBoardList(res.data.boardList);
+    });
+  };
+  function toggleMainDrop(id, type) {
+    console.log(id, type);
+    const list = document.querySelectorAll(
+      `.dropdown-container${id} .main-drop`
+    );
+    console.log(list);
+    list[0].value = type;
+    list[1].value = type;
+    document
+      .querySelector(".dropdown-container" + id + " .dropdown")
+      .classList.toggle("show");
+  }
+
+  function drawBoardList(list) {
+    const length = 5;
+    loop: for (let i = 0; i < list.length; i += 4) {
+      console.log("hi");
+      const row = document.createElement("li");
+      row.classList =
+        "list-group-item d-flex justify-content-between align-items-center";
+      row.style.display = "flex";
+      for (let j = 0; j < 4; j++) {
+        if (!list[j + i]) break loop;
+        console.log(list[i + j]);
+        const li = document.createElement("div");
+        li.innerHTML = `
+        <div
+          class="card bg-light mb-3"
+          style="width: 250px; height: 200px; margin: 40px"
+        >
+          <a href="/joongo/board/view/${list[i + j].id}">
+            <div class="card-header" style="padding: 7px">
+              <span class="badge rounded-pill bg-info">${
+                list[i + j].onSale
+              }</span>
+              ${list[i + j].title}
+            </div>
+            <div class="card-body" style="display: flex">
+              <img
+                src="/img/dghs.png"
+                alt="dghs"
+                class="article-img"
+                style="height: 100px; width: 100px"
+              />
+            </div>
+          </a>
+          <div
+            class="btn-group dropdown-container${list[i + j].id}"
+            role="group"
+            aria-label="Button group with nested dropdown"
+            style="position: relative; top: -20px"
+          >
+            <input
+              type="button"
+              class="btn btn-primary main-drop"
+              onclick="document.querySelector('.dropdown-container${
+                list[i + j].id
+              } form').submit()"
+              value="${list[i + j].onSale}"
+              style="border-radius: 10px"
+            />
+            <form action="/joongo/user/change/onSale" method="post">
+              <input type="hidden" class="main-drop" name="type" value="${
+                list[i + j].onSale
+              }" />
+              <input type="hidden" class="main-drop" name="id" value="${
+                list[i + j].id
+              }" />
+            </form>
+            <div class="btn-group" role="group" style="border-radius: 10px">
+              <button
+                id="btnGroupDrop1"
+                type="button"
+                class="btn btn-primary dropdown-toggle show"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="true"
+                onclick="document.querySelector('.dropdown-container${
+                  list[i + j].id
+                } .dropdown').classList.toggle('show')"
+                style="border-radius: 10px"
+              ></button>
+              <div
+                class="dropdown-menu dropdown"
+                aria-labelledby="btnGroupDrop1"
+                style="
+                  position: absolute;
+                  inset: 0px auto auto 0px;
+                  margin: 0px;
+                  transform: translate(0px, 58px);
+                "
+                data-popper-placement="bottom-start"
+              >
+                <button class="dropdown-item" onclick="toggleMainDrop(${
+                  list[i + j].id
+                },'sold')">
+                  sold
+                </button>
+                <button class="dropdown-item" onclick="toggleMainDrop(${
+                  list[i + j].id
+                },'notsale')">
+                  notsale
+                </button>
+                <button class="dropdown-item" onclick="toggleMainDrop(${
+                  list[i + j].id
+                },'onsale')">
+                  onsale
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+        row.append(li);
+      }
+      document.querySelector(".list-group").append(row);
+    }
+  }
+</script>
+{% endblock %}

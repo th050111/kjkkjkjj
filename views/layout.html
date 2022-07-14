@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="src/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
+    {% block style %} {% endblock %}
+  </head>
+
+  <body class="white">
+    <div class="container_1">
+      <div class="settings"></div>
+      <div class="navigator-container">
+        <div class="leftup_box">
+          <ul>
+            <li>
+              <a href="home">
+                <img src="img/dghs.png" class="dghs" />
+                <p class="leftup_box_title">홈</p>
+              </a>
+            </li>
+
+            <li>
+              <a href="/"><p class="leftup_box_text">기자재 신청</p></a>
+            </li>
+          </ul>
+        </div>
+        <div class="leftdown_box">
+          <ul>
+            <li><p class="leftup_box_title">사이트 바로가기</p></li>
+            {% for site in siteList %}
+            <li>
+              <a href="{{site.url}}"
+                ><p class="leftup_box_text">{{site.name}}</p></a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="leftdowndown_box">
+        <p class="theme">테마 변경 ▶</p>
+      </div>
+
+      {% block content %} {% endblock %}
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    {% block script %} {% endblock %}
+  </body>
+</html>

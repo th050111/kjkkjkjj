@@ -1,0 +1,331 @@
+/* body 테마 */
+a {
+  text-decoration: none;
+  color: black;
+}
+body.white {
+  --left-box-border: black;
+  --box-border: #fff;
+  --box-backcolor: #e7e7e7;
+  --font-color: #3f3f3f;
+  --chat-box-color: #d6d6d6;
+  background-color: #f0f0f0;
+  --themeboxcolor: #f0f0f0;
+  --reload: #e7e7e7;
+}
+body.black {
+  --left-box-border: black;
+  --box-border: #aeaeae;
+  --box-backcolor: #393e46;
+  --font-color: #aeaeae;
+  --chat-box-color: #d6d6d6;
+  background-color: #222831;
+  --themeboxcolor: #222831;
+  --reload: #393e46;
+}
+
+body.testheme {
+  --left-box-border: black;
+  --box-border: black;
+  --font-color: #2d2424;
+  background: linear-gradient(#93b5c6, #c9ccd5, #e4d8dc, #ffe3e3);
+}
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 14px;
+}
+
+.container_1 {
+  position: relative;
+  width: 80%;
+  height: 1500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* body */
+
+/* 네비게이터 */
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+}
+
+li {
+  list-style: none;
+  margin: 0px;
+}
+.navigator-container li {
+  margin: 20px 0px;
+}
+
+.leftup_box {
+  position: absolute;
+  left: 1.5%;
+  top: 1%;
+  width: 20%;
+  height: 30%;
+  border: 1px solid var(--box-border);
+  border-radius: 10px;
+  background-color: var(--box-backcolor);
+  color: var(--font-color);
+}
+
+.leftdown_box {
+  position: absolute;
+  left: 1.5%;
+  top: 32%;
+  width: 20%;
+  height: 18%;
+  border: 1px solid var(--box-border);
+  border-radius: 10px;
+  background-color: var(--box-backcolor);
+  color: var(--font-color);
+}
+
+.leftdowndown_box {
+  position: absolute;
+  left: 1.5%;
+  top: 51%;
+  width: 20%;
+  height: 4%;
+  border: 1px solid var(--box-border);
+  border-radius: 10px;
+  background-color: var(--box-backcolor);
+  color: var(--font-color);
+}
+
+.leftup_box_text {
+  list-style: none;
+  border: 1px solid var(--left-box-text-border);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.leftdown_box_text {
+  list-style: none;
+  border: 1px solid var(--left-box-text-border);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.leftdown_box_text:after {
+  content: "+";
+}
+
+.dghs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding-top: 0%;
+  width: 50px;
+}
+
+.leftup_box_title {
+  list-style: none;
+  border: 1px solid var(--box-border);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 네비게이터 */
+/*
+
+
+
+
+
+
+
+
+
+
+
+*/
+/* 일정표 */
+.schedule-container {
+  position: absolute;
+  left: 23%;
+  top: 13%;
+  width: 75%;
+  height: 10%; /*65%--> 13*/
+  border: 1px solid var(--box-border);
+  border-radius: 10px;
+  background-color: var(--box-backcolor);
+  color: var(--font-color);
+  margin: 10px auto;
+  display: flex;
+}
+
+.calender-container {
+  height: 100%;
+  width: 100%;
+  border-bottom: 1px solid white;
+  background-color: black;
+  color: var(--font-color);
+  border-collapse: collapse;
+}
+
+.calender-block {
+  width: 14%;
+  height: 100%;
+  background-color: var(--box-backcolor);
+
+  border-left: 1px solid white;
+  color: var(--font-color);
+  float: left;
+  border-collapse: collapse;
+}
+.calender-block.today {
+  background-color: #ebd7d7;
+}
+/* 일정표 끝 */
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+/* 테마 설정*/
+.theme {
+  text-align: center;
+}
+
+.theme_box {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 50%;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: var(--themeboxcolor);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.theme_title {
+  text-align: center;
+  border: 1px solid black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.the2e {
+  text-align: center;
+}
+
+.theme {
+  text-align: center;
+}
+
+.theme_submit {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25 auto;
+  background-color: transparent;
+  border: 1px solid #aeaeae;
+}
+
+.the2e input[type="radio"] {
+  width: 50px;
+  height: 50px;
+}
+
+#op {
+  font-size: 16px;
+}
+
+.theme_submit:hover {
+  background: #aeaeae;
+}
+/* 테마 설정 끝 */
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+/* banner*/
+
+/* timer을 banner로 변경 */
+.banner {
+  position: absolute;
+  left: 23%;
+  top: 1%;
+  width: 75%;
+  height: 10%; /*height 변경*/
+  border: 1px solid var(--box-border);
+  border-radius: 10px;
+  background-color: var(--box-backcolor);
+  color: var(--font-color);
+  font-weight: bold;
+}
+
+.banner .site-title {
+  position: relative;
+  top: 10%;
+  font-size: 60px;
+  text-align: center;
+}
+/* 디데이 컨테이너 */
+.dDay-container {
+  width: fit-content;
+  position: relative;
+  top: 10%;
+  margin: 0 auto;
+}
+.dDay-container .dDay-article {
+  margin: 10px;
+}
+
+/* banner */
